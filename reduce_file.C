@@ -2,6 +2,6 @@
 
 void reduce_file(){
 
-  copyTree("ttbar");
+  reduce_size_file("ttbar");
   
 }
