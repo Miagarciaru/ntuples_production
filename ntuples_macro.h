@@ -38,7 +38,8 @@ Float_t initial_sum_of_weights_squared_ttbar;
 // Declaration of functions
 
 void set_branch_address(TTree* tree);
-void copyTree(TString name_sample);
+void branch(TTree* tree);
+void reduce_size_file(TString name_sample);
 
 
 void set_branch_address(TTree* tree){
@@ -106,7 +107,7 @@ void branch(TTree* tree){
 }
 
 
-void copyTree(TString name_sample){
+void reduce_size_file(TString name_sample){
 
   // Open the input file for reading
   TString path="ntup/";
@@ -158,10 +159,10 @@ void copyTree(TString name_sample){
   branch(outTree);
   
   for(int ii=0; ii<nentries*fraction; ii++){
-    //nbytes = outTree->GetEntry(ii);
     nbytes = inTree->GetEntry(ii);
     outTree->Fill();
   }
+  
   // Write the output tree to the output file
 
   outFile->Write();
